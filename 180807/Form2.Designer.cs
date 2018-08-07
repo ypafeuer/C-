@@ -65,7 +65,7 @@
             // label3
             // 
             this.label3.Image = global::WindowsFormsApp6_180802.Properties.Resources.Car_GT;
-            this.label3.Location = new System.Drawing.Point(366, 118);
+            this.label3.Location = new System.Drawing.Point(363, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 23);
             this.label3.TabIndex = 3;

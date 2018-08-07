@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -51,21 +50,11 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "label2";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(172, 138);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form3_KeyDown);
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form3_KeyPress);
-            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.KeyPreview = true;
@@ -82,6 +71,5 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
