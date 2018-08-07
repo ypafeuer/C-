@@ -12,8 +12,11 @@ namespace WindowsFormsApp6_180807 {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
+            //MessageBox.Show("建構子發生！");
         }
-
+        private void Form1_Load(object sender, EventArgs e) {
+            //MessageBox.Show("視窗載入囉！");
+        }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e) {
             label1.Text = string.Format("按了{0} 字碼{1}",e.KeyChar,(int)e.KeyChar);
             if (e.KeyChar >= '0' && e.KeyChar <= '9' ) {
@@ -73,11 +76,34 @@ namespace WindowsFormsApp6_180807 {
 
         private void button3_Click(object sender, EventArgs e) {
             try {
-                label3.Text = ((double)int.Parse(textBox4.Text) / (double)int.Parse(textBox5.Text)).ToString();
+                label3.Text = (int.Parse(textBox4.Text) / int.Parse(textBox5.Text)).ToString();
+            }
+            catch (DivideByZeroException ee) {
+                MessageBox.Show("除數為零" + "\r\n" + ee.Message + "\r\n" + ee.ToString());
+            }
+            catch (FormatException ee) {
+                MessageBox.Show("格式錯誤" + "\r\n" + ee.Message + "\r\n" + ee.ToString());
             }
             catch (Exception ee) {
-                label3.Text = ""+ee.Message;
+                //label3.Text = ""+ee.Message;
+                MessageBox.Show("" + ee.Message + "\r\n" + ee.ToString());
+                //MessageBox.Show("TextBox2 請輸入數值！", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
+            finally {
+                MessageBox.Show("算完啦","訊息",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e) {
+            Font ff = new Font("標楷體",24,FontStyle.Bold |FontStyle.Italic);
+            textBox6.Font = ff;
+            //button4.Font = ff;
+        }
+
+        private void changed01(object sender, EventArgs e) {
+            Font font = textBox6.Font;
         }
     }
 }
