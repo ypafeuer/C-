@@ -17,8 +17,9 @@ namespace WindowsFormsApp6 {
         }
 
 
-
+        //畫線
         private void button1_Click(object sender, EventArgs e) {
+            fg.Clear(this.BackColor);//用背景色蓋過畫布=清空塗鴉
             fg.DrawLine(
                 new Pen(Color.Red, 10),
                 new Point(100, 100),
@@ -26,8 +27,9 @@ namespace WindowsFormsApp6 {
                 );
 
         }
-
+        //畫線
         private void button2_Click(object sender, EventArgs e) {
+            fg.Clear(this.BackColor);//用背景色蓋過畫布=清空塗鴉
             Pen pp = new Pen(Color.Red, 10);
             pp.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDotDot;
             pp.StartCap = System.Drawing.Drawing2D.LineCap.Round;
@@ -54,9 +56,9 @@ namespace WindowsFormsApp6 {
 
 
         }
-
+        //畫方框
         private void button3_Click(object sender, EventArgs e) {
-            fg.Clear(this.BackColor);
+            fg.Clear(this.BackColor);//用背景色蓋過畫布=清空塗鴉
             Pen pp = new Pen(Color.Red, 10);
             fg.DrawRectangle(pp, 100, 100, 200, 300);
             try {
@@ -66,7 +68,7 @@ namespace WindowsFormsApp6 {
             }
 
         }
-
+        //畫方框
         private void button4_Click(object sender, EventArgs e) {
             fg.Clear(this.BackColor);
             Random rr = new Random();
@@ -75,14 +77,14 @@ namespace WindowsFormsApp6 {
                 fg.DrawRectangle(pp, 100+i*50, 100 + i * 50, 200, 300);
             }
         }
-
+        //畫實心方框
         private void button5_Click(object sender, EventArgs e) {
             fg.Clear(this.BackColor);
             Brush bb = new SolidBrush(Color.Pink);
             fg.FillRectangle(bb, new Rectangle(new Point(100,100),new Size(200,100)) );
 
         }
-
+        //畫實心方框
         private void button6_Click(object sender, EventArgs e) {
             fg.Clear(this.BackColor);
             Random rr = new Random();
@@ -93,14 +95,14 @@ namespace WindowsFormsApp6 {
             }
 
         }
-
+        //畫橢圓
         private void button7_Click(object sender, EventArgs e) {
             fg.Clear(this.BackColor);
             Random rr = new Random();
             Brush bb = new SolidBrush(Color.FromArgb(rr.Next(256), rr.Next(256), rr.Next(256)));
             fg.FillEllipse(bb,new Rectangle(new Point(100, 100), new Size(200, 100)));
         }
-
+        //用角度切割橢圓
         private void button8_Click(object sender, EventArgs e) {
             fg.Clear(this.BackColor);
             Random rr = new Random();
@@ -113,7 +115,7 @@ namespace WindowsFormsApp6 {
             fg.FillPie(bb, new Rectangle(new Point(100, 100), new Size(200, 100)), 135, 45);
 
         }
-
+        //圓餅圖
         private void button9_Click(object sender, EventArgs e) {
             fg.Clear(this.BackColor);
             //
