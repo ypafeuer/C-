@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.OleDb;
@@ -260,6 +261,95 @@ namespace WA1070904
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            string cnnS = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Data\資料.xlsx;";
+            cnnS += "Extended Properties=\"Excel 12.0;HDR=YES;\"";
+
+            //string cmdS = "INSERT INTO [Sheet1] VALUES(26,'可樂',30)";
+            string cmdS = "INSERT INTO [Sheet1$] VALUES(26,'可樂',30)";
+
+            using (OleDbConnection cnn = new OleDbConnection(cnnS))
+            {
+                cnn.ConnectionString = cnnS;
+                using (OleDbCommand cmd = new OleDbCommand())
+                {
+                    cmd.CommandText = cmdS;
+                    cmd.Connection = cnn;
+
+                    cnn.Open();
+                    int cc = cmd.ExecuteNonQuery();
+                    if(cc>0)
+                        MessageBox.Show("Excel 新增資料成功！");
+                    else
+                        MessageBox.Show("Excel 並未新增任何資料！");
+
+                    cmd.Dispose();
+                    cnn.Close();
+                }                 
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            string cnnS = @"server=localhost;database=中文北風;UID=SQLUser;PWD=1234;";                        
+            string cmdS = "SELECT COUNT(*) FROM 產品資料";
+
+            using (SqlConnection cnn = new SqlConnection(cnnS))
+            {
+                cnn.ConnectionString = cnnS;
+                using (SqlCommand cmd = new SqlCommand(cmdS,cnn))
+                {
+                    cnn.Open();
+                    int cc = (int)cmd.ExecuteScalar();
+                    cmd.Dispose();
+                    cnn.Close();
+
+                    label1.Text = cc.ToString();
+                }
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            string cnnS = @"server=localhost;database=中文北風;UID=SQLUser;PWD=1234;";
+            string cmdS = "SELECT 產品編號,產品,單價,單位數量,庫存量 FROM 產品資料";
+
+            using (SqlConnection cnn = new SqlConnection(cnnS))
+            {
+                cnn.ConnectionString = cnnS;
+                using (SqlCommand cmd = new SqlCommand(cmdS, cnn))
+                {
+                    cnn.Open();
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        while (dr.Read())
+                        {
+                            sb.Append(dr[0]).Append("\t");
+                            sb.Append(dr["產品"]).Append("\t");
+                            sb.Append(dr["單價"]).Append("\t");
+                            sb.Append(dr[3]).Append("\t");
+                            sb.Append(dr[4]).Append("\t");
+                            sb.Append("\r\n");
+                        }
+                        textBox3.Text = sb.ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("查無任何資料！");
+                    }
+                    dr.Close();
+                    cmd.Dispose();
+                    cnn.Close();                    
+                }
+            }
+
+
         }
     }
 }
